@@ -10,25 +10,14 @@ const Navbar = ({ refs }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleItemClick = (itemName, ref) => {
-    if (location.pathname !== "/") {
-      navigate("/");
-    }
-
-    if (window.innerWidth <= 900) {
-      const newWindow = window.open(`/#${itemName}`, "_self");
-      newWindow.onload = () => {
-        const targetElement = newWindow.document.getElementById(itemName);
-        if (targetElement) {
-          const topOffset = targetElement.getBoundingClientRect().top;
-          newWindow.scrollTo(0, topOffset + 10);
-        }
-      };
+  const handleItemClick = (path, ref) => {
+    if (path) {
+      navigate(path);
+      window.scrollTo(0, 0); // Ensure the page loads at the top
     } else if (ref) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }
-
-    setOpen(false);
+    setOpen(false); // Close the mobile menu
   };
 
   const toggleDropdown = (menu) => {
@@ -38,7 +27,7 @@ const Navbar = ({ refs }) => {
   return (
     <header className="bg-white sm:flex md:justify-between md:shadow-md sm:items-center px-8 sm:py-1 fixed top-0 left-0 w-full z-[100]">
       <div className="flex justify-between py-2 sm:p-0 items-center">
-        <Link to="/" className="flex items-center">
+        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center">
           <img
             src={Logo}
             className="md:h-[40px] h-[46px] relative z-10 object-contain"
@@ -59,10 +48,8 @@ const Navbar = ({ refs }) => {
         } sm:flex w-full lg:w-[55%] sm:h-auto sm:w-auto flex-col md:flex-row items-center justify-center md:justify-end bg-white sm:bg-transparent transition-all duration-300 ease-in-out`}
       >
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent ${
-            location.hash === "#home" ? "text-blue-500" : ""
-          }`}
-          onClick={() => handleItemClick("home", refs.homeRef)}
+          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
+          onClick={() => handleItemClick("/", refs.homeRef)}
         >
           Home
         </li>
@@ -79,26 +66,25 @@ const Navbar = ({ refs }) => {
             />
           </div>
           {dropdownOpen === "about" && (
-  <ul className="absolute top-full left-0 w-[250px] text-start bg-white shadow-md rounded-md mt-2">
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/about" className="block w-full h-full">
-        Founder and Directors
-      </Link>
-    </li>
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/donation" className="block w-full h-full">
-        Habulus Foundation
-      </Link>
-    </li>
-  </ul>
-)}
-
+            <ul className="absolute top-full left-0 w-[250px] text-start bg-white shadow-md rounded-md mt-2">
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/about")}
+              >
+                Founder and Directors
+              </li>
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/donation")}
+              >
+                Habulus Foundation
+              </li>
+            </ul>
+          )}
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent ${
-            location.hash === "#home" ? "text-blue-500" : ""
-          }`}
-          onClick={() => handleItemClick("companies", refs.companiesRef)}
+          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
+          onClick={() => handleItemClick("/", refs.companiesRef)}
         >
           Companies
         </li>
@@ -115,44 +101,43 @@ const Navbar = ({ refs }) => {
             />
           </div>
           {dropdownOpen === "projects" && (
-  <ul className="text-start absolute top-full left-3 w-[250px] bg-white shadow-md rounded-md mt-2">
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/completed-projects" className="block w-full h-full">
-        Completed Project
-      </Link>
-    </li>
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/under-construction" className="block w-full h-full">
-        Under Construction Project
-      </Link>
-    </li>
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/ready-to-move-in" className="block w-full h-full">
-        Ready to Move In
-      </Link>
-    </li>
-    <li className="p-2 text-black hover:bg-[#509FCF] cursor-pointer">
-      <Link to="/upcoming-projects" className="block w-full h-full">
-        Upcoming
-      </Link>
-    </li>
-  </ul>
-)}
-
+            <ul className="text-start absolute top-full left-3 w-[250px] bg-white shadow-md rounded-md mt-2">
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/completed-projects")}
+              >
+                Completed Projects
+              </li>
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/under-construction")}
+              >
+                Under Construction Projects
+              </li>
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/ready-to-move-in")}
+              >
+                Ready to Move In
+              </li>
+              <li
+                className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
+                onClick={() => handleItemClick("/upcoming-projects")}
+              >
+                Upcoming
+              </li>
+            </ul>
+          )}
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent ${
-            location.hash === "#home" ? "text-blue-500" : ""
-          }`}
-          onClick={() => handleItemClick("property", refs.propertyRef)}
+          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
+          onClick={() => handleItemClick("/", refs.propertyRef)}
         >
           Property
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent ${
-            location.hash === "#contact" ? "text-blue-500" : ""
-          }`}
-          onClick={() => handleItemClick("contact", refs.contactRef)}
+          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
+          onClick={() => handleItemClick("/", refs.contactRef)}
         >
           Contact Us
         </li>

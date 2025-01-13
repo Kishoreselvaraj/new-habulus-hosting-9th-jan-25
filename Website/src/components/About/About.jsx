@@ -18,7 +18,7 @@ import Subramaniyam from './imgabout/Subramaniyam.png'
 
 function About() {
   return (
-    <div className="about bg-black text-white lg:bg-white lg:text-black">
+    <div id='about' className="about bg-black text-white lg:bg-white lg:text-black">
       <div className="relative pt-5">
         <img className="w-full h-auto" src={image1} alt="Description of the image" />
           <div className="absolute inset-0 flex items-start  text-white  font-bold sm:text-2xl lg:text-3xl p-5 pt-[100px]">
