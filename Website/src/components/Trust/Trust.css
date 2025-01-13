@@ -1,0 +1,300 @@
+.top-content{
+  padding: 1rem;
+  width: 90%;
+}
+h2{
+  font-size: 25px;
+}
+.foundation-page {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  /* padding-top: 100px; */
+}
+.verified{
+  width: 20px;
+}
+
+.foundation-info {
+  text-align: left;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.donation-content-heading{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+}
+.logo {
+  padding-right: 20px;
+  padding-bottom: 20px;
+  width: 100px;
+}
+
+
+.foundation-info h1 {
+  font-size: 2rem;
+  color: #154166;
+  font-weight: 800;
+  font-family: Roboto;
+}
+
+.foundation-info p {
+  font-size: 1rem;
+  width: 90%;
+  color: black;
+}
+
+.foundation-description {
+  color: #154166;
+}
+
+.charity-image {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 1rem;
+}
+
+.donation-section {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.donation-section h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.donation-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.donation-box h2 {
+  color: #154166;
+  font-weight: 800;
+  font-family: Roboto;
+}
+
+.donation-gateway {
+  /* background-color: #C2E8FF; */
+  padding-top: 50px;
+  width: 300px;
+  height: 400px;
+  margin-left: 300px;
+}
+
+
+
+.donate_logo {
+  width: 50px;
+  border-radius: 20px;
+  background: transparent;
+}
+
+/* .img-container {
+  width: 100px;
+}
+
+.patient-image {
+  width: 100%;
+  min-width: 400px;
+  border-radius: 8px;
+  margin-top: 1rem;
+} */
+
+/* CSS for the carousel */
+.carousel .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.patient-image {
+  max-width: 100%; /* Ensures the image doesn't overflow */
+  max-height: 500px; /* Optional: Set a max height to prevent very large images */
+  object-fit: contain; /* Ensures the image is scaled to fit within the container without stretching */
+}
+
+
+
+.progress-text {
+  font-size: 1.2rem;
+  color: #28a745;
+  margin: 1rem 0;
+}
+
+.donate-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.qr-code img {
+  width: 180px;
+  height: 180px;
+  margin: 1rem 0;
+  justify-self: center;
+}
+
+.donate-instructions {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.verification-section {
+  /* background-color: #e9ecef; */
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.verification-section h3 {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.verification-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.verification-section li {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.verified {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.check-doc-button {
+  background-color: #343a40;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Breakpoints for responsiveness */
+@media (max-width: 1200px) {
+  .donation-content {
+    width: 600px;
+  }
+  .patient-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* This ensures the entire image is visible without stretching */
+  }
+  .logo{
+    width: 150px;
+  }
+}
+
+@media (max-width: 992px) {
+  .logo{
+    width: 100px;
+  }
+  .foundation-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  .verification-section{
+    flex-direction: column;
+  }
+  .donation-section {
+    flex-direction: column;
+  }
+  .donation-gateway {
+    width: 250px;
+    margin: 0 auto;
+  }
+  .patient-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* This ensures the entire image is visible without stretching */
+  }
+}
+
+@media (max-width: 768px) {
+  .logo{
+    width: 100px;
+  }
+  .foundation-info h1 {
+    font-size: 1.8rem;
+  }
+  .donation-content {
+    width: 100%;
+  }
+  .charity-image, .donate_logo {
+    max-width: 100%;
+  }
+  .qr-code img {
+    width: 150px;
+    height: 150px;
+  }
+  .verification-section{
+    flex-direction: column;
+  }
+  .patient-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* This ensures the entire image is visible without stretching */
+  }
+}
+
+@media (max-width: 576px) {
+  .logo{
+    width: 100px;
+  }
+  h2{
+    font-size: 20px;
+  }
+  .verification-section{
+    flex-direction: column;
+  }
+  .foundation-info h1 {
+    font-size: 1.5rem;
+  }
+  .foundation-info p {
+    font-size: 0.9rem;
+  }
+  .donation-section h2 {
+    font-size: 1.3rem;
+  }
+  .donate-button, .check-doc-button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .patient-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* This ensures the entire image is visible without stretching */
+  }
+  
+}
