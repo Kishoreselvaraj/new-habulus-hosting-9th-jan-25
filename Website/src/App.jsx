@@ -72,7 +72,12 @@ const App = () => {
           <img
             src={WALogo}
             alt=""
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+                const phoneNumber = "7204794811"; // Replace with your WhatsApp number
+                const message = "Hello, I need assistance."; // Customize the message
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, "_blank");
+              }}
             className="w-[60px] h-[60px] cursor-pointer object-cover"
           />
           {open && (

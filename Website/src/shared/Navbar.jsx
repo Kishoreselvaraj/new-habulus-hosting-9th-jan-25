@@ -10,14 +10,24 @@ const Navbar = ({ refs }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleItemClick = (path, ref) => {
-    if (path) {
-      navigate(path);
-      window.scrollTo(0, 0); // Ensure the page loads at the top
-    } else if (ref) {
-      ref.current?.scrollIntoView({ behavior: "smooth" });
+  const handleSectionNavigation = (itemName, ref) => {
+    if (location.pathname !== "/") {
+      navigate("/");
     }
-    setOpen(false); // Close the mobile menu
+
+    if (ref) {
+      setTimeout(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+      }, 0); // Allow the navigation to "/" to complete first
+    }
+
+    setOpen(false);
+  };
+
+  const handlePageNavigation = (path) => {
+    navigate(path);
+    setOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const toggleDropdown = (menu) => {
@@ -27,7 +37,7 @@ const Navbar = ({ refs }) => {
   return (
     <header className="bg-white sm:flex md:justify-between md:shadow-md sm:items-center px-8 sm:py-1 fixed top-0 left-0 w-full z-[100]">
       <div className="flex justify-between py-2 sm:p-0 items-center">
-        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src={Logo}
             className="md:h-[40px] h-[46px] relative z-10 object-contain"
@@ -48,8 +58,8 @@ const Navbar = ({ refs }) => {
         } sm:flex w-full lg:w-[55%] sm:h-auto sm:w-auto flex-col md:flex-row items-center justify-center md:justify-end bg-white sm:bg-transparent transition-all duration-300 ease-in-out`}
       >
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
-          onClick={() => handleItemClick("/", refs.homeRef)}
+          className="p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent"
+          onClick={() => handleSectionNavigation("home", refs.homeRef)}
         >
           Home
         </li>
@@ -69,13 +79,13 @@ const Navbar = ({ refs }) => {
             <ul className="absolute top-full left-0 w-[250px] text-start bg-white shadow-md rounded-md mt-2">
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/about")}
+                onClick={() => handlePageNavigation("/about")}
               >
                 Founder and Directors
               </li>
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/donation")}
+                onClick={() => handlePageNavigation("/donation")}
               >
                 Habulus Foundation
               </li>
@@ -83,8 +93,8 @@ const Navbar = ({ refs }) => {
           )}
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
-          onClick={() => handleItemClick("/", refs.companiesRef)}
+          className="p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent"
+          onClick={() => handleSectionNavigation("companies", refs.companiesRef)}
         >
           Companies
         </li>
@@ -104,25 +114,25 @@ const Navbar = ({ refs }) => {
             <ul className="text-start absolute top-full left-3 w-[250px] bg-white shadow-md rounded-md mt-2">
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/completed-projects")}
+                onClick={() => handlePageNavigation("/completed-projects")}
               >
                 Completed Projects
               </li>
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/under-construction")}
+                onClick={() => handlePageNavigation("/under-construction")}
               >
                 Under Construction Projects
               </li>
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/ready-to-move-in")}
+                onClick={() => handlePageNavigation("/ready-to-move-in")}
               >
                 Ready to Move In
               </li>
               <li
                 className="p-2 text-black hover:bg-[#509FCF] cursor-pointer"
-                onClick={() => handleItemClick("/upcoming-projects")}
+                onClick={() => handlePageNavigation("/upcoming-projects")}
               >
                 Upcoming
               </li>
@@ -130,14 +140,14 @@ const Navbar = ({ refs }) => {
           )}
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
-          onClick={() => handleItemClick("/", refs.propertyRef)}
+          className="p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent"
+          onClick={() => handleSectionNavigation("property", refs.propertyRef)}
         >
           Property
         </li>
         <li
-          className={`p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent`}
-          onClick={() => handleItemClick("/", refs.contactRef)}
+          className="p-2 lg:p-3 mx-2 lg:mx-3 text-black text-sm lg:text-base cursor-pointer text-center font-semibold hover:bg-[#509FCF] md:hover:text-blue-500 md:hover:bg-transparent"
+          onClick={() => handleSectionNavigation("contact", refs.contactRef)}
         >
           Contact Us
         </li>
