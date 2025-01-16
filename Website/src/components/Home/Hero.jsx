@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import IntroImage from "../../assets/Front photo.jpg"; // Intro image remains the same
 import { AiOutlineClose } from "react-icons/ai";
-import axios from "axios";
 import { MEDIA_LINK, API_LINK } from "../../utils/api";
+import axios from "axios";
 
 const Hero = ({ refs }) => {
   const [count, setCount] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
   const [data, setData] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Fetch carousel data
   useEffect(() => {
@@ -29,16 +28,13 @@ const Hero = ({ refs }) => {
     if (!isPaused && data.length > 0) {
       const intervalId = setInterval(() => {
         setCount((prevCount) => (prevCount + 1) % data.length);
-      }, 3000);
+      }, 4000);
       return () => clearInterval(intervalId); // Cleanup interval
     }
   }, [data.length, isPaused]);
 
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-
   const handleIndicatorClick = (index) => setCount(index);
-
+  
   const handleItemClick = (itemName, ref) => {
     const isMobileOrTablet = window.innerWidth <= 768;
     if (ref) {
@@ -52,15 +48,14 @@ const Hero = ({ refs }) => {
 
   const handleCloseIntro = () => setShowIntro(false);
 
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
   return (
     <>
       {showIntro ? (
         <div className="relative h-[100vh] w-full">
-          <img
-            src={IntroImage}
-            className="w-full h-full object-cover"
-            alt="Intro"
-          />
+          <img src={data[count]?.image} className="w-full h-full object-cover" alt="Intro" />
           <div className="absolute inset-0 flex justify-center items-center">
             <div className="bg-black bg-opacity-50 text-white py-11 px-8 rounded-lg text-center mx-auto w-full md:w-[70%] animate-slide-up">
               <p className="text-lg">
@@ -86,13 +81,21 @@ const Hero = ({ refs }) => {
         >
           {data.length > 0 ? (
             <div className="relative w-full h-[100vh] bg-black overflow-hidden">
-  <img
-    src={`${MEDIA_LINK}/${data[count]?.image}`}
-    className="w-full h-full object-fill" // you may use object-contain
-    alt={data[count]?.title || "Carousel Image"}
-    loading="lazy"
-  />
-</div>
+              <img
+                src={`${MEDIA_LINK}/${data[count]?.image}`}
+                className="w-full h-full object-cover lg:object-fill sm:object-contain"
+                alt={data[count]?.title || "Carousel Image"}
+                loading="lazy"
+              />
+              <div className="absolute inset-0 flex justify-center items-center">
+                <div className="bg-black bg-opacity-70 text-white py-11 px-8 rounded-lg text-center mx-auto w-full md:w-[60%]">
+                  <h2 className="text-5xl font-extrabold mb-4 uppercase">
+                    {data[count]?.title}
+                  </h2>
+                  <p className="text-lg">{data[count]?.description}</p>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="flex justify-center items-center h-[100vh]">
               <p className="text-white">Loading...</p>
@@ -111,6 +114,7 @@ const Hero = ({ refs }) => {
           </div>
         </div>
       )}
+
       <section className="bg-black w-full justify-center items-center flex-col py-16 hidden md:flex">
         <p className="text-white text-center font-medium text-2xl md:text-3xl">
           Welcome to our <br /> Construction Field website!
