@@ -3,13 +3,15 @@ import { MEDIA_LINK } from "../../utils/api";
 
 const ImageList = ({ image, list }) => {
   return (
-    <div className="w-full flex justify-center text-justify items-center md:items-start flex-col md:flex-row mx-auto gap-5">
+    <div className="w-full flex flex-col md:flex-row items-center justify-center text-justify mx-auto gap-5">
+      {/* Full-width image */}
       <img
         src={MEDIA_LINK + image}
         alt=""
-        className="w-[90%] md:w-[50%] aspect-square object-cover"
+        className="w-full md:w-[50%] aspect-auto object-cover"
       />
-      <ul className="flex flex-wrap  gap-x-4 md:block md:w-[50%] w-[90%] mt-4 md:mt-0 md:pl-10">
+      {/* List Section */}
+      <ul className="flex flex-wrap gap-x-4 md:block md:w-[50%] w-full mt-4 md:mt-0 md:pl-10">
         {list &&
           list.map((item, index) => {
             return (

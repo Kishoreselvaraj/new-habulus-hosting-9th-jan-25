@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MEDIA_LINK, API_LINK } from "../../utils/api";
+import IntroImage from "../../assets/Front photo.jpg";
 import axios from "axios";
 
 const Hero = ({ refs }) => {
@@ -55,7 +56,7 @@ const Hero = ({ refs }) => {
     <>
       {showIntro ? (
         <div className="relative h-[100vh] w-full">
-          <img src={data[count]?.image} className="w-full h-full object-cover" alt="Intro" />
+          <img src={IntroImage} className="w-full h-full object-cover" alt="Intro" />
           <div className="absolute inset-0 flex justify-center items-center">
             <div className="bg-black bg-opacity-50 text-white py-11 px-8 rounded-lg text-center mx-auto w-full md:w-[70%] animate-slide-up">
               <p className="text-lg">
