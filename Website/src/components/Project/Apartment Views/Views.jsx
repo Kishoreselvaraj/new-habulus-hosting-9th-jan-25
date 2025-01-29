@@ -48,31 +48,31 @@ const Views = ({ id }) => {
   return (
     <div className="flex flex-col items-center w-full mx-auto justify-center">
       {images && images.length > 0 && (
-        <div className="relative w-full max-w-[800px] h-[450px] flex justify-center items-center overflow-hidden">
+        <div className="relative w-full max-w-[800px] h-[250px] sm:h-[450px] flex justify-center items-center overflow-hidden">
           <AiFillLeftCircle
-            size={40}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-10 text-white bg-black/50 rounded-full"
+            size={30}
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-10 text-white bg-black/50 rounded-full"
             onClick={handlePrev}
           />
           <img
             src={MEDIA_LINK + images[currentIndex]}
-            alt=""
+            alt="Carousel View"
             className="w-full h-full object-cover rounded-lg cursor-pointer"
             onClick={() => openModal(MEDIA_LINK + images[currentIndex])}
           />
           <AiFillRightCircle
-            size={40}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-10 text-white bg-black/50 rounded-full"
+            size={30}
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-10 text-white bg-black/50 rounded-full"
             onClick={handleNext}
           />
         </div>
       )}
       {images && images.length > 0 && (
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-2 sm:mt-4">
           {images.map((_, index) => (
             <div
               key={index}
-              className={`h-3 w-3 rounded-full mx-2 cursor-pointer ${
+              className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full mx-1 sm:mx-2 cursor-pointer ${
                 currentIndex === index ? "bg-blue-500" : "bg-gray-300"
               }`}
               onClick={() => setCurrentIndex(index)}
@@ -83,17 +83,17 @@ const Views = ({ id }) => {
 
       {/* Modal for Image Pop-Up */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
-          <div className="relative">
+        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-[9999] pt-10">
+          <div className="relative w-full max-w-[90vw] max-h-[90vh] flex justify-center items-center">
             <IoClose
-              size={30}
-              className="absolute top-[-10px] right-[-10px] text-white cursor-pointer"
+              size={40}
+              className="absolute top-4 right-4 text-white cursor-pointer bg-black/60 p-1 rounded-full"
               onClick={closeModal}
             />
             <img
               src={modalImage}
               alt="Modal View"
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+              className="w-full h-full max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
             />
           </div>
         </div>
